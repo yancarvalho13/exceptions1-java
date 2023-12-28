@@ -30,7 +30,7 @@ public class program {
 
 			Reservation reserv = new Reservation(roomNumber, checkIn, checkOut);
 			System.out.println("Reservation: " + reserv);
-			
+
 			System.out.println();
 			System.out.println("Enter data to update the reservation: ");
 			System.out.print("Check-in date (dd/MM/yyyy): ");
@@ -38,20 +38,18 @@ public class program {
 			checkIn = sdf.parse(scan.next());
 			System.out.print("Check-out date (dd/MM/yyyy): ");
 			checkOut = sdf.parse(scan.next());
-			
-			reserv.updateDates(checkIn, checkOut);
-			
-			if (!checkOut.after(checkIn)) {
-				System.out.println("Error in reservation: Check-ou date must be after Check-in date");
-			} else {
-				
-				System.out.println("Reservation: " + reserv);
 
+			String error = reserv.updateDates(checkIn, checkOut);
+			if (error != null) {
+
+				System.out.println(error);
+			} else {
+
+				System.out.println("Reservation: " + reserv);
 			}
 		}
 
-		
-
+		scan.close();
 	}
 
 }
